@@ -2,5 +2,6 @@
 {
     public class Sector
     {
+        public List<Line> Lines { get; set; }
     }
 }

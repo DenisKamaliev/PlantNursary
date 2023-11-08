@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantNursary.Entities", "PlantNursary\PlantNursary.Entities.csproj", "{9698234C-CE41-4E05-9014-7F04DA77F33A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantNursary.Entities", "PlantNursary\PlantNursary.Entities.csproj", "{9698234C-CE41-4E05-9014-7F04DA77F33A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantNursary.DataAccess", "PlantNursary.DataAccess\PlantNursary.DataAccess.csproj", "{E54F643A-8E93-4234-A57A-2C2DF88B4B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantNursary.DataAccess", "PlantNursary.DataAccess\PlantNursary.DataAccess.csproj", "{E54F643A-8E93-4234-A57A-2C2DF88B4B7F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9698234C-CE41-4E05-9014-7F04DA77F33A} = {9698234C-CE41-4E05-9014-7F04DA77F33A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantNursary.ApplicationServices", "PlantNursary.ApplicationServices\PlantNursary.ApplicationServices.csproj", "{AA939A33-F21F-4D7C-B05C-CE7485BF8C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantNursary.ApplicationServices", "PlantNursary.ApplicationServices\PlantNursary.ApplicationServices.csproj", "{AA939A33-F21F-4D7C-B05C-CE7485BF8C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
