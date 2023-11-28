@@ -1,5 +1,4 @@
-﻿using Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PlantNursary.Entities;
 
 namespace PlantNursary.DataAccess

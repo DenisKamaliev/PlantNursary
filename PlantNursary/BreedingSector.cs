@@ -1,7 +1,10 @@
-﻿namespace PlantNursary.Entities
+﻿using PlantNursary.Entities.Common;
+
+namespace PlantNursary.Entities
 {
-    public class BreedingSector
+    public class BreedingSector : BaseAuditableEntity
     {
-        List<Bed> beds { get; set; }
+        
+        public List<Bed> beds { get; set; }
     }
 }

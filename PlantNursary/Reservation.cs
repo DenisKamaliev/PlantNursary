@@ -1,8 +1,12 @@
-﻿namespace PlantNursary.Entities
+﻿using PlantNursary.Entities.Common;
+
+namespace PlantNursary.Entities
 {
-    public class Reservation
+    public class Reservation : BaseAuditableEntity
     {
-        public List<Plant> plats {  get; set; }
+        public List<Plant> plants {  get; set; }
+        
+
         // Доделать
     }
 }

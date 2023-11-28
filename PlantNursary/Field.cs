@@ -1,6 +1,8 @@
-﻿namespace PlantNursary.Entities
+﻿using PlantNursary.Entities.Common;
+
+namespace PlantNursary.Entities
 {
-    public class Field
+    public class Field : BaseAuditableEntity
     {
         public List<Sector> sectors {  get; set; }
     }

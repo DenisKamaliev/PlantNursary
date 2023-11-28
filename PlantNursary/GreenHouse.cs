@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PlantNursary.Entities.Common;
 
 namespace PlantNursary.Entities
 {
-    public class GreenHouse
+    public class GreenHouse : BaseAuditableEntity
     {
         List<Plant> plants { get; set; }
     }

@@ -1,6 +1,8 @@
-﻿namespace PlantNursary.Entities
+﻿using PlantNursary.Entities.Common;
+
+namespace PlantNursary.Entities
 {
-    public class Nursary
+    public class Nursary : BaseAuditableEntity
     {
         List<Field> fields {  get; set; }
         List<QueenCell> queenCells { get; set; }
