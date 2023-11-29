@@ -5,7 +5,7 @@ namespace PlantNursary.Entities
     public class Bed : BaseAuditableEntity
 
     {
-        
+
         List<Plant> plants { get; set; }
     }
 }

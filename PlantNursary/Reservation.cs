@@ -4,9 +4,16 @@ namespace PlantNursary.Entities
 {
     public class Reservation : BaseAuditableEntity
     {
-        public List<Plant> plants {  get; set; }
-        
+        public Dictionary<Line, int> reservationList = new Dictionary<Line, int>();
 
-        // Доделать
+        public DateOnly givenDate { get; set; }
+        public Reservation(Dictionary<Line, int> reservationList, DateOnly givingDate)
+        {
+            this.reservationList = reservationList;
+            this.givenDate = givingDate;
+        }
+
+
+
     }
 }

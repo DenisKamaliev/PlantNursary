@@ -5,17 +5,17 @@ namespace PlantNursary.DataAccess
 {
     public class NursaryContext : DbContext
     {
-        DbSet<Plant> plants { get; set; }
-        DbSet<Line> lines { get; set; } 
-        DbSet<Sector> sectors { get; set; }
-        DbSet<Field> fields { get; set; }
-        DbSet<BreedingSector> breedings { get; set; }
-        DbSet<QueenCell> QueenCells { get; set; }
-        DbSet<Reservation> reservations { get; set; }
-        DbSet<Bed> beds { get; set; }
-        DbSet<GreenHouse> greenHouses { get; set; }
+        public DbSet<Plant> Plants { get; set; }
+        public DbSet<Line> Lines { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
+        public DbSet<Field> Fields { get; set; }
+        public DbSet<BreedingSector> Breedings { get; set; }
+        public DbSet<QueenCell> QueenCells { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Bed> Beds { get; set; }
+        public DbSet<GreenHouse> GreenHouses { get; set; }
+        public DbSet<Nursary> Nurses { get; set; }
 
-        DbSet<Nursary> nurses { get; set; }
         private readonly string _connectionString = "Host=localhost;Port=5432;Database=nursarydb;Username=postgres;Password=admin";
 
         public NursaryContext()
@@ -27,8 +27,8 @@ namespace PlantNursary.DataAccess
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+
 
         }
     }
-    }
+}

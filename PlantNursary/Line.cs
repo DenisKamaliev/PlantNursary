@@ -6,7 +6,9 @@ namespace PlantNursary.Entities
 {
     public class Line : BaseAuditableEntity
     {
-        public List<Plant> plants {  get; set; }
+        public Plant plantInLine { get; set; }
+        public int countOfPlants { get; set; }
+        public DateOnly dateOfPlanting { get; set; }
         public List<EventType> events { get; set; }
 
     }

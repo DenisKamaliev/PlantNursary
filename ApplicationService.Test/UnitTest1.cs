@@ -1,4 +1,3 @@
-using Entities.Enums;
 using PlantNursary.ApplicationServices;
 using PlantNursary.DataAccess;
 using PlantNursary.Entities;
@@ -17,9 +16,9 @@ namespace ApplicationService.Test
 
             Plant[] plants = new Plant[2];
             plants[0] = plant;
-            iser.ImportPlantToSistem(plants);
-            
+            iser.ImportPlants(plants);
 
-    }
+
+        }
     }
 }

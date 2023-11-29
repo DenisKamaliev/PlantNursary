@@ -4,6 +4,6 @@ namespace PlantNursary.Entities
 {
     public class QueenCell : BaseAuditableEntity
     {
-        List<Plant> plants {  get; set; }
+        List<Plant> plants { get; set; }
     }
 }
