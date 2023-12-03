@@ -12,8 +12,8 @@ using PlantNursary.DataAccess;
 namespace PlantNursary.DataAccess.Migrations
 {
     [DbContext(typeof(NursaryContext))]
-    [Migration("20231128080847_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231203114140_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasIndex("BreedingSectorId");
 
-                    b.ToTable("beds");
+                    b.ToTable("Beds");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.BreedingSector", b =>
@@ -61,7 +61,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("breedings");
+                    b.ToTable("Breedings");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Field", b =>
@@ -78,7 +78,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("fields");
+                    b.ToTable("Fields");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.GreenHouse", b =>
@@ -95,7 +95,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("greenHouses");
+                    b.ToTable("GreenHouses");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Line", b =>
@@ -113,15 +113,26 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("countOfPlants")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("dateOfPlanting")
+                        .HasColumnType("date");
+
                     b.Property<int[]>("events")
                         .IsRequired()
                         .HasColumnType("integer[]");
+
+                    b.Property<Guid?>("plantInLineId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SectorId");
 
-                    b.ToTable("lines");
+                    b.HasIndex("plantInLineId");
+
+                    b.ToTable("Lines");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Nursary", b =>
@@ -138,7 +149,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("nurses");
+                    b.ToTable("Nurses");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Plant", b =>
@@ -147,26 +158,15 @@ namespace PlantNursary.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateOnly>("BirthDay")
-                        .HasColumnType("date");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("LineId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Peculiarities")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("ReservationId")
-                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("diameter")
-                        .HasColumnType("integer");
+                    b.Property<string>("diameter")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("groundType")
                         .HasColumnType("integer");
@@ -174,11 +174,15 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<int>("hardinessType")
                         .HasColumnType("integer");
 
-                    b.Property<int>("height")
-                        .HasColumnType("integer");
+                    b.Property<string>("height")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("name")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("peculiarities")
                         .HasColumnType("text");
 
                     b.Property<int>("placeType")
@@ -189,11 +193,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LineId");
-
-                    b.HasIndex("ReservationId");
-
-                    b.ToTable("plants");
+                    b.ToTable("Plants");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.QueenCell", b =>
@@ -225,9 +225,12 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateOnly>("givenDate")
+                        .HasColumnType("date");
+
                     b.HasKey("Id");
 
-                    b.ToTable("reservations");
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Sector", b =>
@@ -249,7 +252,7 @@ namespace PlantNursary.DataAccess.Migrations
 
                     b.HasIndex("FieldId");
 
-                    b.ToTable("sectors");
+                    b.ToTable("Sectors");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Bed", b =>
@@ -264,17 +267,12 @@ namespace PlantNursary.DataAccess.Migrations
                     b.HasOne("PlantNursary.Entities.Sector", null)
                         .WithMany("Lines")
                         .HasForeignKey("SectorId");
-                });
 
-            modelBuilder.Entity("PlantNursary.Entities.Plant", b =>
-                {
-                    b.HasOne("PlantNursary.Entities.Line", null)
-                        .WithMany("plants")
-                        .HasForeignKey("LineId");
+                    b.HasOne("PlantNursary.Entities.Plant", "plantInLine")
+                        .WithMany()
+                        .HasForeignKey("plantInLineId");
 
-                    b.HasOne("PlantNursary.Entities.Reservation", null)
-                        .WithMany("plants")
-                        .HasForeignKey("ReservationId");
+                    b.Navigation("plantInLine");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Sector", b =>
@@ -292,16 +290,6 @@ namespace PlantNursary.DataAccess.Migrations
             modelBuilder.Entity("PlantNursary.Entities.Field", b =>
                 {
                     b.Navigation("sectors");
-                });
-
-            modelBuilder.Entity("PlantNursary.Entities.Line", b =>
-                {
-                    b.Navigation("plants");
-                });
-
-            modelBuilder.Entity("PlantNursary.Entities.Reservation", b =>
-                {
-                    b.Navigation("plants");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Sector", b =>

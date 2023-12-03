@@ -6,6 +6,6 @@ namespace PlantNursary.Entities
 
     {
 
-        List<Plant> plants { get; set; }
+        List<Plant> plants { get; set; } = new List<Plant>();
     }
 }

@@ -4,6 +4,6 @@ namespace PlantNursary.Entities
 {
     public class Sector : BaseAuditableEntity
     {
-        public List<Line> Lines { get; set; }
+        public List<Line> Lines { get; set; } = new List<Line>();
     }
 }

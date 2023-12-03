@@ -13,114 +13,108 @@ namespace PlantNursary.ApplicationServices
         {
             _NursaryContext = nursaryContextFactory.Create();
         }
-        public void ImportPlants(IReadOnlyCollection<Plant> plants)
+        public void ImportPlant(Plant plantImport)
         {
-            foreach (var plant in plants)
-            {
-                if (_NursaryContext.Plants.Any(plant => plant.Id == plant.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+                if (_NursaryContext.Plants.Any(plant => plant.Id == plantImport.Id))
+                    _NursaryContext.Update(plantImport);
                 else
-                    _NursaryContext.Add(plant);
+                    _NursaryContext.Add(plantImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportLines(IReadOnlyCollection<Line> lines)
+        public void ImportLine(Line lineImport)
         {
-            foreach (var line in lines)
-            {
-                if (_NursaryContext.Lines.Any(line => line.Id == line.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+            
+                if (_NursaryContext.Lines.Any(line => line.Id == lineImport.Id))
+                    _NursaryContext.Update(lineImport);
                 else
-                    _NursaryContext.Add(line);
+                    _NursaryContext.Add(lineImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportSectors(IReadOnlyCollection<Sector> sectors)
+        public void ImportSector(Sector sectorImport)
         {
-            foreach (var sector in sectors)
-            {
-                if (_NursaryContext.Sectors.Any(sector => sector.Id == sector.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+            
+                if (_NursaryContext.Sectors.Any(sector => sector.Id == sectorImport.Id))
+                    _NursaryContext.Update(sectorImport);
                 else
-                    _NursaryContext.Add(sector);
+                    _NursaryContext.Add(sectorImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportFields(IReadOnlyCollection<Sector> fields)
+        public void ImportField(Field fieldImport)
         {
-            foreach (var field in fields)
-            {
-                if (_NursaryContext.Fields.Any(field => field.Id == field.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+                if (_NursaryContext.Fields.Any(field => field.Id == fieldImport.Id))
+                    _NursaryContext.Update(fieldImport);
                 else
-                    _NursaryContext.Add(field);
+                    _NursaryContext.Add(fieldImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportBreedings(IReadOnlyCollection<Sector> breedings)
+        public void ImportBreeding(BreedingSector breedingImport)
         {
-            foreach (var breeding in breedings)
-            {
-                if (_NursaryContext.Breedings.Any(breeding => breeding.Id == breeding.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+            
+                if (_NursaryContext.Breedings.Any(breeding => breeding.Id == breedingImport.Id))
+                    _NursaryContext.Update(breedingImport);
                 else
-                    _NursaryContext.Add(breeding);
+                    _NursaryContext.Add(breedingImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportQueenCells(IReadOnlyCollection<QueenCell> queenCells)
+        public void ImportQueenCell(QueenCell queenCellImport)
         {
-            foreach (var queenCell in queenCells)
-            {
-                if (_NursaryContext.QueenCells.Any(queenCell => queenCell.Id == queenCell.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+                if (_NursaryContext.QueenCells.Any(queenCell => queenCell.Id == queenCellImport.Id))
+                    _NursaryContext.Update(queenCellImport);
                 else
-                    _NursaryContext.Add(queenCell);
+                    _NursaryContext.Add(queenCellImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportReservations(Reservation reservation)
+        public void ImportReservation(Reservation reservationImport)
         {
 
-            if (_NursaryContext.Reservations.Any(reservation => reservation.Id == reservation.Id))
-                _NursaryContext.Update(_NursaryContext);
+            if (_NursaryContext.Reservations.Any(reservation => reservation.Id == reservationImport.Id))
+                _NursaryContext.Update(reservationImport);
             else
-                _NursaryContext.Add(reservation);
+                _NursaryContext.Add(reservationImport);
             _NursaryContext.SaveChanges();
 
         }
-        public void ImportBeds(IReadOnlyCollection<Bed> beds)
+        public void ImportBed(Bed bedImport)
         {
-            foreach (var bed in beds)
-            {
-                if (_NursaryContext.Beds.Any(bed => bed.Id == bed.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+                if (_NursaryContext.Beds.Any(bed => bed.Id == bedImport.Id))
+                    _NursaryContext.Update(bedImport);
                 else
-                    _NursaryContext.Add(bed);
+                    _NursaryContext.Add(bedImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportGreenHouses(IReadOnlyCollection<GreenHouse> greenHouses)
+        public void ImportGreenHouse(GreenHouse greenHouseImport)
         {
-            foreach (var greenHouse in greenHouses)
-            {
-                if (_NursaryContext.GreenHouses.Any(greenHouse => greenHouse.Id == greenHouse.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+                if (_NursaryContext.GreenHouses.Any(greenHouse => greenHouse.Id == greenHouseImport.Id))
+                    _NursaryContext.Update(greenHouseImport);
                 else
-                    _NursaryContext.Add(greenHouse);
+                    _NursaryContext.Add(greenHouseImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
-        public void ImportNurses(IReadOnlyCollection<Nursary> nurses)
+        public void ImportNurse(Nursary nursaryImport)
         {
-            foreach (var nursary in nurses)
-            {
-                if (_NursaryContext.Nurses.Any(nursary => nursary.Id == nursary.Id))
-                    _NursaryContext.Update(_NursaryContext);
+            
+                if (_NursaryContext.Nurses.Any(nursary => nursary.Id == nursaryImport.Id))
+                    _NursaryContext.Update(nursaryImport);
                 else
-                    _NursaryContext.Add(nursary);
+                    _NursaryContext.Add(nursaryImport);
                 _NursaryContext.SaveChanges();
-            }
+            
         }
 
 

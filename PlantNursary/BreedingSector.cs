@@ -5,6 +5,6 @@ namespace PlantNursary.Entities
     public class BreedingSector : BaseAuditableEntity
     {
 
-        public List<Bed> beds { get; set; }
+        public List<Bed> beds { get; set; } = new List<Bed>();
     }
 }
