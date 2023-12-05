@@ -1,4 +1,5 @@
 ﻿using PlantNursary.DataAccess;
+using PlantNursary.Entities;
 
 namespace PlantNursary.ApplicationServices
 {
@@ -8,6 +9,11 @@ namespace PlantNursary.ApplicationServices
         public PlantsTransportationService(NursaryContextFactory nursaryContextFactory)
         {
             _NursaryContext = nursaryContextFactory.Create();
+        }
+
+        public void TransportationFirstToSecond (Line line1,  Line line2)
+        {
+
         }
     }
 }

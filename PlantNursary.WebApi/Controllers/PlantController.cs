@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using PlantNursary.ApplicationServices.UseCases.GetPlantByID;
 using PlantNursary.Entities;
@@ -8,11 +7,11 @@ namespace PlantNursary.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FindController : ControllerBase
+    public class PlantController : ControllerBase
     {
         private readonly ISender _sender;
 
-        public FindController(ISender sender)
+        public PlantController(ISender sender)
         {
             _sender = sender;
         }
@@ -21,5 +20,7 @@ namespace PlantNursary.WebApi.Controllers
         {
             return _sender.Send(new GetPlantByIdRequest(plantId));
         }
+        
+        
     }
 }
