@@ -11,7 +11,7 @@ namespace PlantNursary.ApplicationServices
             _NursaryContext = nursaryContextFactory.Create();
         }
 
-        public void TransportationFirstToSecond (Line line1,  Line line2)
+        public void TransportationFirstToSecond(Line line1, Line line2)
         {
 
         }

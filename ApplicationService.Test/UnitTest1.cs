@@ -83,6 +83,6 @@ namespace ApplicationService.Test
             importService.ImportNurse(nursary);
             plantRemovalService.RemovePlantsFromLine(line7, 5);
         }
-        
+
     }
 }

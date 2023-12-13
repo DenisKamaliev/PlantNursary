@@ -15,7 +15,7 @@ namespace PlantNursary.WebApi.Controllers
         {
             _sender = sender;
         }
-        
+
         [HttpGet("{lineId:guid}")]
         public Task<Line> Get(Guid lineId)
         {

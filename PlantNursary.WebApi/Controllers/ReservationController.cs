@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantNursary.ApplicationServices;
-using PlantNursary.ApplicationServices.UseCases.GetLineById;
 using PlantNursary.ApplicationServices.UseCases.GetPlantByID;
-using PlantNursary.DataAccess;
 using PlantNursary.Entities;
 
 namespace PlantNursary.WebApi.Controllers

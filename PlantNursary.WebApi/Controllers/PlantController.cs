@@ -20,7 +20,7 @@ namespace PlantNursary.WebApi.Controllers
         {
             return _sender.Send(new GetPlantByIdRequest(plantId));
         }
-        
-        
+
+
     }
 }

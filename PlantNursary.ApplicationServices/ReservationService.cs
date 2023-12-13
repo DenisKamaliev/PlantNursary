@@ -27,7 +27,7 @@ namespace PlantNursary.ApplicationServices
             Reservation reservation = new Reservation(reservationList, givingDate);
             _ImportService.ImportReservation(reservation);
         }
-        public void AcceptReservation ( Reservation reservationAccept)
+        public void AcceptReservation(Reservation reservationAccept)
         {
 
             if (_NursaryContext.Reservations.Any(reservation => reservation.Id == reservationAccept.Id))
@@ -44,7 +44,7 @@ namespace PlantNursary.ApplicationServices
         }
         public void RemoveReservation(Reservation reservationRemove)
         {
-            if(reservationRemove == null) { throw new Exception("Bad request"); }
+            if (reservationRemove == null) { throw new Exception("Bad request"); }
             if (_NursaryContext.Reservations.Any(reservation => reservation.Id == reservationRemove.Id))
                 _NursaryContext.Remove(_NursaryContext);
             else

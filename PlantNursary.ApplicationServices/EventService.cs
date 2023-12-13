@@ -8,14 +8,14 @@ namespace PlantNursary.ApplicationServices
     {
         private NursaryContext _NursaryContext;
         private ImportService _ImportService;
-        
+
         public EventService(NursaryContextFactory nursaryContextFactory)
         {
             _NursaryContext = nursaryContextFactory.Create();
             _ImportService = new ImportService(nursaryContextFactory);
         }
 
-        public void NewIventInLine(Line line, EventType eventType )
+        public void NewIventInLine(Line line, EventType eventType)
         {
             if (line == null) { throw new Exception("Bad request"); }
             line.events.Add(eventType);

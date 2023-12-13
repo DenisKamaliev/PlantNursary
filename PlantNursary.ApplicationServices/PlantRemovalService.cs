@@ -17,12 +17,12 @@ namespace PlantNursary.ApplicationServices
         public void RemovePlantsFromLine(Line line, int count)
         {
             if (line == null || count == 0)
-              throw new Exception("Bad request");
+                throw new Exception("Bad request");
 
             line.countOfPlants = line.countOfPlants - count;
             _ImportService.ImportLine(line);
         }
 
-    
+
     }
 }
