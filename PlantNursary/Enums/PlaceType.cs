@@ -2,5 +2,6 @@
 {
     public enum PlaceType
     {
+        test
     }
 }

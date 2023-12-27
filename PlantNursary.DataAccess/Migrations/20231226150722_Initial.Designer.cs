@@ -12,8 +12,8 @@ using PlantNursary.DataAccess;
 namespace PlantNursary.DataAccess.Migrations
 {
     [DbContext(typeof(NursaryContext))]
-    [Migration("20231203114140_initial")]
-    partial class initial
+    [Migration("20231226150722_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,10 +56,15 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("NursaryId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NursaryId");
 
                     b.ToTable("Breedings");
                 });
@@ -73,10 +78,15 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("NursaryId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NursaryId");
 
                     b.ToTable("Fields");
                 });
@@ -90,10 +100,15 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("NursaryId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NursaryId");
 
                     b.ToTable("GreenHouses");
                 });
@@ -165,7 +180,6 @@ namespace PlantNursary.DataAccess.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("diameter")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("groundType")
@@ -175,7 +189,6 @@ namespace PlantNursary.DataAccess.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("height")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("name")
@@ -205,10 +218,15 @@ namespace PlantNursary.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("NursaryId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NursaryId");
 
                     b.ToTable("QueenCells");
                 });
@@ -262,6 +280,27 @@ namespace PlantNursary.DataAccess.Migrations
                         .HasForeignKey("BreedingSectorId");
                 });
 
+            modelBuilder.Entity("PlantNursary.Entities.BreedingSector", b =>
+                {
+                    b.HasOne("PlantNursary.Entities.Nursary", null)
+                        .WithMany("breedingSectors")
+                        .HasForeignKey("NursaryId");
+                });
+
+            modelBuilder.Entity("PlantNursary.Entities.Field", b =>
+                {
+                    b.HasOne("PlantNursary.Entities.Nursary", null)
+                        .WithMany("fields")
+                        .HasForeignKey("NursaryId");
+                });
+
+            modelBuilder.Entity("PlantNursary.Entities.GreenHouse", b =>
+                {
+                    b.HasOne("PlantNursary.Entities.Nursary", null)
+                        .WithMany("greenHouses")
+                        .HasForeignKey("NursaryId");
+                });
+
             modelBuilder.Entity("PlantNursary.Entities.Line", b =>
                 {
                     b.HasOne("PlantNursary.Entities.Sector", null)
@@ -273,6 +312,13 @@ namespace PlantNursary.DataAccess.Migrations
                         .HasForeignKey("plantInLineId");
 
                     b.Navigation("plantInLine");
+                });
+
+            modelBuilder.Entity("PlantNursary.Entities.QueenCell", b =>
+                {
+                    b.HasOne("PlantNursary.Entities.Nursary", null)
+                        .WithMany("queenCells")
+                        .HasForeignKey("NursaryId");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Sector", b =>
@@ -290,6 +336,17 @@ namespace PlantNursary.DataAccess.Migrations
             modelBuilder.Entity("PlantNursary.Entities.Field", b =>
                 {
                     b.Navigation("sectors");
+                });
+
+            modelBuilder.Entity("PlantNursary.Entities.Nursary", b =>
+                {
+                    b.Navigation("breedingSectors");
+
+                    b.Navigation("fields");
+
+                    b.Navigation("greenHouses");
+
+                    b.Navigation("queenCells");
                 });
 
             modelBuilder.Entity("PlantNursary.Entities.Sector", b =>

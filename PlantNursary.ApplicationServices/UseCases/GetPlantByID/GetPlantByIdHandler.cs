@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PlantNursary.ApplicationServices.Exceptions;
 using PlantNursary.DataAccess;
 using PlantNursary.Entities;
 
@@ -14,7 +15,7 @@ namespace PlantNursary.ApplicationServices.UseCases.GetPlantByID
         public async Task<Plant> Handle(GetPlantByIdRequest request, CancellationToken token)
         {
             var foundPlant = await _context.Plants.FindAsync(new object[] { request.plantId }, token)
-                ?? throw new Exception("Entity not found");
+                ?? throw new EntityNotFoundException(request.plantId);
 
             return foundPlant;
         }

@@ -1,54 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace PlantNursary.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Breedings",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Breedings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Fields",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Fields", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GreenHouses",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GreenHouses", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Nurses",
                 columns: table => new
@@ -69,8 +31,8 @@ namespace PlantNursary.DataAccess.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     plantType = table.Column<int>(type: "integer", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    height = table.Column<string>(type: "text", nullable: false),
-                    diameter = table.Column<string>(type: "text", nullable: false),
+                    height = table.Column<string>(type: "text", nullable: true),
+                    diameter = table.Column<string>(type: "text", nullable: true),
                     hardinessType = table.Column<int>(type: "integer", nullable: false),
                     placeType = table.Column<int>(type: "integer", nullable: false),
                     groundType = table.Column<int>(type: "integer", nullable: false),
@@ -81,19 +43,6 @@ namespace PlantNursary.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Plants", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "QueenCells",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QueenCells", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,6 +57,82 @@ namespace PlantNursary.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Breedings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    NursaryId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Breedings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Breedings_Nurses_NursaryId",
+                        column: x => x.NursaryId,
+                        principalTable: "Nurses",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Fields",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    NursaryId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fields", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Fields_Nurses_NursaryId",
+                        column: x => x.NursaryId,
+                        principalTable: "Nurses",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GreenHouses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    NursaryId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GreenHouses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GreenHouses_Nurses_NursaryId",
+                        column: x => x.NursaryId,
+                        principalTable: "Nurses",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QueenCells",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    NursaryId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QueenCells", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QueenCells_Nurses_NursaryId",
+                        column: x => x.NursaryId,
+                        principalTable: "Nurses",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -182,6 +207,21 @@ namespace PlantNursary.DataAccess.Migrations
                 column: "BreedingSectorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Breedings_NursaryId",
+                table: "Breedings",
+                column: "NursaryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fields_NursaryId",
+                table: "Fields",
+                column: "NursaryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GreenHouses_NursaryId",
+                table: "GreenHouses",
+                column: "NursaryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Lines_plantInLineId",
                 table: "Lines",
                 column: "plantInLineId");
@@ -190,6 +230,11 @@ namespace PlantNursary.DataAccess.Migrations
                 name: "IX_Lines_SectorId",
                 table: "Lines",
                 column: "SectorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QueenCells_NursaryId",
+                table: "QueenCells",
+                column: "NursaryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sectors_FieldId",
@@ -210,9 +255,6 @@ namespace PlantNursary.DataAccess.Migrations
                 name: "Lines");
 
             migrationBuilder.DropTable(
-                name: "Nurses");
-
-            migrationBuilder.DropTable(
                 name: "QueenCells");
 
             migrationBuilder.DropTable(
@@ -229,6 +271,9 @@ namespace PlantNursary.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Fields");
+
+            migrationBuilder.DropTable(
+                name: "Nurses");
         }
     }
 }

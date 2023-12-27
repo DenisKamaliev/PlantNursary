@@ -3,5 +3,5 @@ using PlantNursary.Entities;
 
 namespace PlantNursary.ApplicationServices.UseCases.GetLineById
 {
-    public record GetLineByIdRequest(Guid lineId) : IRequest<Line>;
+    public record GetLineByIdRequest(Guid lineId) : IRequest<GetLineByIdDto>;
 }

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\PlantNursary\PlantNursary.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>

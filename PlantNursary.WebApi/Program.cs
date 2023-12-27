@@ -1,4 +1,7 @@
 
+using PlantNursary.ApplicationServices.DependencyInjection;
+using PlantNursary.DataAccess.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 

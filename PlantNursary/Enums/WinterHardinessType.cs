@@ -2,5 +2,6 @@
 {
     public enum WinterHardinessType
     {
+        test
     }
 }

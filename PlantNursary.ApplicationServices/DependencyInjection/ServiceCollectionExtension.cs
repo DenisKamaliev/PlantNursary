@@ -1,9 +1,7 @@
-﻿
-
-
+﻿using Microsoft.Extensions.DependencyInjection;
 using PlantNursary.ApplicationServices;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace PlantNursary.ApplicationServices.DependencyInjection
 {
     public static class ServiceCollectionExtension
     {
